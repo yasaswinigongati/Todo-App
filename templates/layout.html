@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <script>
+        // Apply theme immediately to prevent flash of white
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <button id="theme-toggle" aria-label="Toggle dark mode">
+            <!-- Icon will be inserted by JS -->
+        </button>
+        <h1>📝 My To-Do List</h1>
+        {% block content %}{% endblock %}
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Simple Emojis
+        const sunIcon = '☀️';
+        const moonIcon = '🌙';
+
+        // Set initial icon based on current class (already set in head)
+        if (html.classList.contains('dark-mode')) {
+            toggleButton.innerHTML = sunIcon;
+        } else {
+            toggleButton.innerHTML = moonIcon;
+        }
+
+        toggleButton.addEventListener('click', () => {
+            html.classList.toggle('dark-mode');
+
+            if (html.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                toggleButton.innerHTML = sunIcon;
+            } else {
+                localStorage.setItem('theme', 'light');
+                toggleButton.innerHTML = moonIcon;
+            }
+        });
+    </script>
+</body>
+
+</html>
