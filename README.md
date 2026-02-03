@@ -5,7 +5,7 @@ A simple web-based ToDo list application built using Python, Flask, HTML, CSS, a
 - ✔️ Mark tasks as completed
 - 🗑️ Delete tasks
 - Dark, Light theme
-- 
+
 ## 🔧 Tech Stack
 - Backend: Python + Flask
 - Frontend: HTML5, CSS3
